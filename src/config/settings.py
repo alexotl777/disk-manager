@@ -23,7 +23,7 @@ class Configuration(BaseSettings):
         default_factory=get_allowed_device_prefixes
     )
     enable_dangerous_ops: bool | None = Field(
-        alias="ALLOWED_DEVICE_PREFIXES", default=False
+        alias="ENABLE_DANGEROUS_PREFIXES", default=False
     )
     templates: Jinja2Templates = Field(default_factory=get_templates)
     base_dir: AnyStr = Field(default_factory=get_base_dir)

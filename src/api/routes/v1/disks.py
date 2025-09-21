@@ -1,5 +1,6 @@
 import os
 import shlex
+from typing import Any
 
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import JSONResponse
@@ -28,7 +29,7 @@ async def get_disks(
 
     devices = []
 
-    def collect(node, parent_name=None):
+    def collect(node: dict[Any], parent_name: str | None = None) -> None:
         name = node.get("name")
         size = node.get("size")
         mount = node.get("mountpoint")
