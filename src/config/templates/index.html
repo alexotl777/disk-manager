@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Disk Manager</title>
+  <script src="/static/app.js" defer></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+    button { margin-right: 8px; }
+    #log { white-space: pre-wrap; background: #111; color: #0f0; padding: 8px; height: 200px; overflow: auto; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Disk Manager</h1>
+  <p>Allowed device prefixes: <span id="allowed"></span></p>
+  <button id="refresh">Обновить список</button>
+  <table id="disks">
+    <thead><tr><th>Имя</th><th>Device</th><th>Размер (байт)</th><th>Mountpoint</th><th>Действия</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Logs</h3>
+  <div id="log"></div>
+</body>
+</html>
