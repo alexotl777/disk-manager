@@ -24,11 +24,21 @@ class DiskService:
     def run_cmd(cmd: str, check: bool = True, timeout: int = 30) -> dict[str, Any]:
         args = shlex.split(cmd)
         try:
-            completed = subprocess.run(args, capture_output=True, text=True, check=check, timeout=timeout)
-            return {"returncode": completed.returncode, "stdout": completed.stdout, "stderr": completed.stderr}
+            completed = subprocess.run(
+                args, capture_output=True, text=True, check=check, timeout=timeout
+            )
+            return {
+                "returncode": completed.returncode,
+                "stdout": completed.stdout,
+                "stderr": completed.stderr,
+            }
         except subprocess.CalledProcessError as e:
             logger.error(traceback.format_exc())
-            return {"returncode": e.returncode, "stdout": e.stdout or "", "stderr": e.stderr or ""}
+            return {
+                "returncode": e.returncode,
+                "stdout": e.stdout or "",
+                "stderr": e.stderr or "",
+            }
         except subprocess.TimeoutExpired as e:
             logger.error(traceback.format_exc())
             return {"returncode": -1, "stdout": e.stdout or "", "stderr": "timeout"}

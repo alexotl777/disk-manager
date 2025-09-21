@@ -19,7 +19,11 @@ def get_allowed_device_prefixes() -> list[str]:
 
 
 class Configuration(BaseSettings):
-    allowed_device_prefixes: list[str] = Field(default_factory=get_allowed_device_prefixes)
-    enable_dangerous_ops: bool | None = Field(alias="ALLOWED_DEVICE_PREFIXES", default=False)
+    allowed_device_prefixes: list[str] = Field(
+        default_factory=get_allowed_device_prefixes
+    )
+    enable_dangerous_ops: bool | None = Field(
+        alias="ALLOWED_DEVICE_PREFIXES", default=False
+    )
     templates: Jinja2Templates = Field(default_factory=get_templates)
     base_dir: AnyStr = Field(default_factory=get_base_dir)

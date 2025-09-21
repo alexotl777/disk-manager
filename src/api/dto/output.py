@@ -17,4 +17,3 @@ class CommandResponse(BaseModel):
     returncode: int
     stdout: str | None = None
     stderr: str | None = None
-

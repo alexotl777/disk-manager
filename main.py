@@ -1,6 +1,6 @@
 import os
 
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from src.api.asgi_app import get_asgi_app
@@ -16,15 +16,16 @@ def get_app() -> FastAPI:
     disk_service = DiskService(config)
 
     app = get_asgi_app(
-        routes=get_routes(),
-        exception_handlers={
-            Exception: exception_handler
-        }
+        routes=get_routes(), exception_handlers={Exception: exception_handler}
     )
-    app.mount("/static", StaticFiles(directory=os.path.join(config.base_dir, "static")), name="static")
+    app.mount(
+        "/static",
+        StaticFiles(directory=os.path.join(config.base_dir, "static")),
+        name="static",
+    )
     app.dependency_overrides = {
         dependencies.config_provider: lambda: config,
-        dependencies.disk_service_provider: lambda: disk_service
+        dependencies.disk_service_provider: lambda: disk_service,
     }
 
     return app

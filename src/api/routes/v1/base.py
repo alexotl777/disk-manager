@@ -14,7 +14,9 @@ def get_base_router() -> APIRouter:
     router.add_api_route(
         "/",
         index,
-        methods={"GET",}
+        methods={
+            "GET",
+        },
     )
 
     return router
